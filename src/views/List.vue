@@ -7,8 +7,8 @@
 
 <script>
 import { mapGetters, mapState } from "vuex";
-import NewItem from "../components/NewItem.vue";
-import ItemList from "../components/ItemList.vue";
+import NewItem from "@/components/NewItem.vue";
+import ItemList from "@/components/ItemList.vue";
 
 export default {
   name: "List",

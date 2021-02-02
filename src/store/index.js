@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-import items from "../services/items";
+import items from "@/services/items";
 
 export default createStore({
   state: {

@@ -4,22 +4,22 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: () => import("../views/Home.vue")
+    component: () => import("@/views/Home.vue")
   },
   {
     path: "/about",
     name: "About",
-    component: () => import("../views/About.vue")
+    component: () => import("@/views/About.vue")
   },
   {
     path: "/list",
     name: "List",
-    component: () => import("../views/List.vue")
+    component: () => import("@/views/List.vue")
   },
   {
     path: "/:catchAll(.*)",
     name: "404",
-    component: () => import("../views/404.vue")
+    component: () => import("@/views/404.vue")
   }
 ];
 
