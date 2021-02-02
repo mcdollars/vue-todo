@@ -1,8 +1,15 @@
 <template>
-  <new-item @on-add-item="onAddItem" />
+  <div class="action-bar">
+    <new-item @on-add-item="onAddItem" />
+
+    <div>
+      Completed:
+      <input type="checkbox" v-model="filterCompleted" />
+    </div>
+  </div>
 
   <div v-if="isLoading">Loading...</div>
-  <item-list :items="items" />
+  <item-list :items="filteredItems" @on-update-item="onUpdateItem" />
 </template>
 
 <script>
@@ -16,13 +23,23 @@ export default {
     NewItem,
     ItemList
   },
+  data: () => ({
+    filterCompleted: false
+  }),
   computed: {
     ...mapState({
       isLoading: "loading"
     }),
     ...mapGetters({
       items: "list"
-    })
+    }),
+    filteredItems() {
+      if (!this.items || this.items.length === 0) return [];
+
+      return this.items.filter(
+        item => item.isCompleted === this.filterCompleted
+      );
+    }
   },
   methods: {
     onAddItem(name) {
@@ -30,7 +47,19 @@ export default {
         name,
         isCompleted: false
       });
+    },
+    onUpdateItem(item) {
+      this.$store.dispatch("updateItem", item);
     }
   }
 };
 </script>
+
+<style lang="scss">
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+
+  margin: 1rem 2rem;
+}
+</style>

@@ -1,7 +1,7 @@
 <template>
   <div class="item">
     <p>{{ name }}</p>
-    <input type="checkbox" :value="isCompleted" />
+    <input type="checkbox" :checked="isCompleted" @click="onUpdate" />
   </div>
 </template>
 
@@ -13,6 +13,14 @@ export default {
     isCompleted: {
       type: Boolean,
       default: false
+    }
+  },
+  methods: {
+    onUpdate() {
+      this.$emit("on-update-item", {
+        name: this.name,
+        isCompleted: !this.isCompleted
+      });
     }
   }
 };

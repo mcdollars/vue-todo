@@ -1,9 +1,9 @@
 <template>
   <Item
-    v-for="(item, index) in items"
-    :key="index"
-    :name="item.name"
-    :isCompleted="item.isCompleted"
+    v-for="item in items"
+    :key="item.name"
+    v-bind="item"
+    @on-update-item="value => $emit('on-update-item', value)"
   />
 </template>
 
