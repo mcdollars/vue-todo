@@ -1,12 +1,16 @@
 import { createStore } from "vuex";
-import { items } from "../services";
+import items from "../services/items";
 
 export default createStore({
   state: {
     items: [],
     loading: false
   },
-  getters: {},
+  getters: {
+    list(state) {
+      return [...state.items];
+    }
+  },
   mutations: {
     setLoading(state, payload) {
       state.loading = payload;
@@ -24,8 +28,7 @@ export default createStore({
     },
     async setItems({ commit }) {
       const result = await items.get();
-      console.log({ result });
-      commit("setItems", result);
+      commit("setItems", result.data);
     },
     addItem({ commit }, payload) {
       commit("addItem", payload);

@@ -1,7 +1,7 @@
 import request from "../request-configs";
 
-const get = async () => {
-  return await request.get("users");
+export const get = async () => {
+  return await request.get("todos");
 };
 
 export default {
